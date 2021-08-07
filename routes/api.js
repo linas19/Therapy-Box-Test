@@ -4,6 +4,7 @@ const config = require("../config/auth.config.js");
 const router = express.Router();
 const User = require('../models/user.model.js')
 const fetch = require('isomorphic-fetch');
+const Todos = require('../models/todos.model.js')
 
 router.get('/currentUser', (req, res) => {
     let token = req.headers["x-access-token"];
@@ -38,6 +39,31 @@ router.get('/sport', (req, res) => {
     .then(response => response.text())
     .then(data => res.send(data))
     
+})
+router.get('/todos', (req, res) => {
+    Todos.find({})
+        .then((data) => {
+            console.log('Todo Data: ', data)
+            res.json(data)
+        })
+        .catch((error) => {
+            console.log('error', daerrorta)
+        })
+})
+router.post('/todos', (req, res) => {
+    console.log('BODY: ', req.body)
+    const data = req.body;
+    const newTodo = new Todos(data);
+    newTodo.save((error) => {
+        if (error) {
+            console.log(error)
+            res.status(500).json({ msg: 'Sorry, internal server error' });
+        } else {
+            res.json({
+                msg: 'Your todo data was saved!!!'
+            })
+        }
+    })
 })
 
 module.exports = router;

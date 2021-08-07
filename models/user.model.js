@@ -7,7 +7,9 @@ const User = mongoose.model(
     email: String,
     password: String,
     winning_team: String,
-    profile_photo_id: { type: mongoose.Schema.Types.ObjectId, ref: "Photo" }
+    profile_photo_id: { type: mongoose.Schema.Types.ObjectId, ref: "Photo" },
+    todos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todos"}],
+    photos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Photos"}]
   })
 );
 

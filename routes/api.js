@@ -16,6 +16,14 @@ router.get('/currentUser', (req, res) => {
             console.log('error', error)
         })
 })
+
+const CLOTHES_URL = `https://therapy-box.co.uk/hackathon/clothing-api.php?username=swapnil`
+router.get('/clothes', (req, res) => {
+    fetch(CLOTHES_URL)
+    .then(response => response.text())
+    .then(data => res.send(data))
+    
+})
 const RSS_URL = `http://feeds.bbci.co.uk/news/rss.xml`
 router.get('/news', (req, res) => {
     fetch(RSS_URL)

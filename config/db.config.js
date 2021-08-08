@@ -1,5 +1,11 @@
+console.log({
+  HOST: process.env.DB_HOST,
+  PORT: process.env.DB_PORT,
+  DB: process.env.DB_NAME
+})
 module.exports = {
-    HOST: "localhost",
-    PORT: 27017,
-    DB: "bezkoder_db"
+    HOST: process.env.DB_HOST,
+    PORT: process.env.DB_PORT,
+    DB: process.env.DB_NAME
   };
+  

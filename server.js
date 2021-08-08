@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const dbConfig = require ("./config/db.config");
@@ -16,14 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
-// require('./routes/news.routes')(app);
 app.use('/api', routes)
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
-// simple route
+
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Linas application." });
 });
@@ -34,7 +30,7 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
-
+console.log(dbConfig)
 
 const db = require("./models");
 
